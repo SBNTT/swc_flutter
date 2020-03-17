@@ -5,17 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 abstract class SwcStatefulWidget extends StatefulWidget {
-
   @override
   SwcState createState();
 
   @override
-  StatefulElement createElement() =>_SwcStatefulElement(this);
-
+  StatefulElement createElement() => _SwcStatefulElement(this);
 }
 
-abstract class SwcState<W extends SwcStatefulWidget, C extends SwcController> extends State<W> {
-
+abstract class SwcState<W extends SwcStatefulWidget, C extends SwcController>
+    extends State<W> {
   final _state = SwcWidgetState<C>();
 
   List<SingleChildWidget> getProviders() => [];
@@ -26,9 +24,7 @@ abstract class SwcState<W extends SwcStatefulWidget, C extends SwcController> ex
 
   @protected
   Widget _wrapper(BuildContext context) {
-    setState(() {
-      
-    });
+    setState(() {});
     return MultiProvider(
       providers: getProviders(),
       child: Builder(builder: (context) {
@@ -50,11 +46,9 @@ abstract class SwcState<W extends SwcStatefulWidget, C extends SwcController> ex
     controller.disposed = true;
     super.dispose();
   }
-
 }
 
 class _SwcStatefulElement extends StatefulElement {
-
   _SwcStatefulElement(SwcStatefulWidget widget) : super(widget);
 
   @override
@@ -62,5 +56,4 @@ class _SwcStatefulElement extends StatefulElement {
 
   @override
   Widget build() => state._wrapper(this);
-
 }

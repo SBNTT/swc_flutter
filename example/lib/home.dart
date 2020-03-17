@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CountState with ChangeNotifier {
-
   int _value = 0;
 
   increment() {
@@ -13,24 +12,20 @@ class CountState with ChangeNotifier {
   }
 
   int get() => _value;
-
 }
 
 class MyHomePage extends SwcStatefulWidget {
-
   @override
   SwcState createState() => _MyHomePageState();
-
 }
 
 class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
-
   final CountState _countState = CountState();
 
   @override
   getProviders() => [
-    ChangeNotifierProvider<CountState>.value(value: _countState),
-  ];
+        ChangeNotifierProvider<CountState>.value(value: _countState),
+      ];
 
   @override
   MyHomePageController getController() => MyHomePageController();
@@ -58,11 +53,9 @@ class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
       ),
     );
   }
-
 }
 
 class MyHomePageController extends SwcController {
-
   @override
   init(BuildContext context) {
     print("init my home page");
@@ -75,5 +68,4 @@ class MyHomePageController extends SwcController {
       dispatch(context, (CountState state) => state.increment());
     });
   }
- 
 }
