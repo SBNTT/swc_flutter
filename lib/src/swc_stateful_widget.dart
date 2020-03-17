@@ -10,7 +10,7 @@ abstract class SwcStatefulWidget extends StatefulWidget {
   SwcState createState();
 
   @override
-  StatefulElement createElement() =>_EasyStatefulElement(this);
+  StatefulElement createElement() =>_SwcStatefulElement(this);
 
 }
 
@@ -53,9 +53,9 @@ abstract class SwcState<W extends SwcStatefulWidget, C extends SwcController> ex
 
 }
 
-class _EasyStatefulElement extends StatefulElement {
+class _SwcStatefulElement extends StatefulElement {
 
-  _EasyStatefulElement(SwcStatefulWidget widget) : super(widget);
+  _SwcStatefulElement(SwcStatefulWidget widget) : super(widget);
 
   @override
   SwcState get state => super.state;
