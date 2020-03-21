@@ -63,9 +63,13 @@ class MyHomePageController extends SwcController {
 
   onAddButtonClick(BuildContext context) {
     Future.delayed(Duration(milliseconds: 2000), () {
-      print("increment!");
-      print(disposed);
       dispatch(context, (CountState state) => state.increment());
     });
+  }
+
+  onSettingsButtonClick(BuildContext context) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => SettingsPage()),
+    );
   }
 }
