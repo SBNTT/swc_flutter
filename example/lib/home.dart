@@ -32,7 +32,6 @@ class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
 
   getController() => MyHomePageController();
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
