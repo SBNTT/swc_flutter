@@ -4,8 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-abstract class SwcStatelessWidget<C extends SwcController>
+abstract class SwcStatelessWidget
+    <C extends SwcController>
     extends StatelessWidget {
+
   final _state = SwcWidgetState<C>();
 
   List<SingleChildWidget> getProviders() => [];
@@ -34,9 +36,11 @@ abstract class SwcStatelessWidget<C extends SwcController>
       }),
     );
   }
+
 }
 
 class _SwcStatelessElement extends StatelessElement {
+
   _SwcStatelessElement(SwcStatelessWidget widget) : super(widget);
 
   @override
@@ -44,4 +48,5 @@ class _SwcStatelessElement extends StatelessElement {
 
   @override
   Widget build() => widget._wrapper(this);
+  
 }

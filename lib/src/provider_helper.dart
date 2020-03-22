@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 mixin ProviderHelper {
+
   bool disposed = false;
 
-  dispatch<S extends ChangeNotifier>(
-      BuildContext context, Function(S state) fn) {
+  dispatch<S extends ChangeNotifier>(BuildContext context, Function(S state) fn) {
     if (disposed) return;
 
     try {
@@ -22,4 +22,5 @@ mixin ProviderHelper {
       return null;
     }
   }
+
 }

@@ -18,24 +18,20 @@ class CountState with ChangeNotifier {
 ```dart
 class MyHomePage extends SwcStatefulWidget {
 
-  @override
   SwcState createState() => _MyHomePageState();
 
 }
 
 class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
 
-  final CountState _countState = CountState();
+  final  _countState = CountState();
 
-  @override
   getProviders() => [
     ChangeNotifierProvider<CountState>.value(value: _countState),
   ];
 
-  @override
-  MyHomePageController getController() => MyHomePageController();
+  getController() => MyHomePageController();
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -59,7 +55,6 @@ class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
 ```dart
 class MyHomePageController extends EasyController {
 
-  @override
   init(BuildContext context) {
     print("init my home page");
   }
