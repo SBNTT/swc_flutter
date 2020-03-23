@@ -25,27 +25,25 @@ abstract class SwcStatelessWidget
     final providers = getProviders();
 
     if (providers.isEmpty) {
-      return _providerChild();
+      return _providerChild(context);
     }
 
     return MultiProvider(
       providers: providers,
-      child: _providerChild(),
+      child: Builder(builder: _providerChild),
     );
   }
 
-  Widget _providerChild() {
-    return Builder(builder: (context) {
-      if (!_state.initialized) {
-        _state.initialized = true;
-        _state.controller = getController();
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _state.controller?.init(context);
-        });
-      }
+  Widget _providerChild(BuildContext context) {
+    if (!_state.initialized) {
+      _state.initialized = true;
+      _state.controller = getController();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _state.controller?.init(context);
+      });
+    }
 
-      return build(context);
-    });
+    return build(context);
   }
 
 }
