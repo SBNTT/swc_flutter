@@ -54,7 +54,7 @@ abstract class SwcState
 
   @override
   void dispose() {
-    controller.disposed = true;
+    controller?.disposed = true;
     super.dispose();
   }
 
