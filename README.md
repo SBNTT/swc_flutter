@@ -53,7 +53,7 @@ class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
 ```
 
 ```dart
-class MyHomePageController extends EasyController {
+class MyHomePageController extends SwcController {
 
   init(BuildContext context) {
     print("init my home page");
