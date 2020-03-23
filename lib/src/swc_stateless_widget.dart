@@ -3,6 +3,7 @@ import 'package:swc_flutter/src/swc_widget_state.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:swc_flutter/swc_flutter.dart';
 
 abstract class SwcStatelessWidget
     <C extends SwcController>
@@ -21,20 +22,30 @@ abstract class SwcStatelessWidget
 
   @protected
   Widget _wrapper(BuildContext context) {
-    return MultiProvider(
-      providers: getProviders(),
-      child: Builder(builder: (context) {
-        if (!_state.initialized) {
-          _state.initialized = true;
-          _state.controller = getController();
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            _state.controller.init(context);
-          });
-        }
+    final providers = getProviders();
 
-        return build(context);
-      }),
+    if (providers.isEmpty) {
+      return _providerChild();
+    }
+
+    return MultiProvider(
+      providers: providers,
+      child: _providerChild(),
     );
+  }
+
+  Widget _providerChild() {
+    return Builder(builder: (context) {
+      if (!_state.initialized) {
+        _state.initialized = true;
+        _state.controller = getController();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _state.controller.init(context);
+        });
+      }
+
+      return build(context);
+    });
   }
 
 }

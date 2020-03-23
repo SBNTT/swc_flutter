@@ -28,20 +28,30 @@ abstract class SwcState
 
   @protected
   Widget _wrapper(BuildContext context) {
-    return MultiProvider(
-      providers: getProviders(),
-      child: Builder(builder: (context) {
-        if (!_state.initialized) {
-          _state.initialized = true;
-          _state.controller = getController();
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            controller.init(context);
-          });
-        }
+    final providers = getProviders();
 
-        return build(context);
-      }),
+    if (providers.isEmpty) {
+      return _providerChild();
+    }
+
+    return MultiProvider(
+      providers: providers,
+      child: _providerChild(),
     );
+  }
+
+  Widget _providerChild() {
+    return Builder(builder: (context) {
+      if (!_state.initialized) {
+        _state.initialized = true;
+        _state.controller = getController();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          controller.init(context);
+        });
+      }
+
+      return build(context);
+    });
   }
 
   @override
