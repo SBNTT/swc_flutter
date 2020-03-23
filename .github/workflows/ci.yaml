@@ -1,0 +1,43 @@
+name: CI/PR
+
+on:
+  push:
+    branches:
+      - ci
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test SWC library
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flutterChannel: [ stable, dev ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.pub-cache
+          key: PUB_CACHE
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 12.x
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: ${{ matrix.flutterChannel }}
+      
+      - run: flutter pub get
+      - run: flutter analyze --no-pub --no-current-package lib/ test/
+      - run: flutter test --no-pub --coverage
+
+      - uses: codecov/codecov-action@v1
+        if: matrix.flutterChannel == 'stable'
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage/lcov.info
