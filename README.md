@@ -1,5 +1,8 @@
 # State Widget Controller
 
+[![codecov](https://codecov.io/gh/SBNTT/swc_flutter/branch/master/graph/badge.svg)](https://codecov.io/gh/SBNTT/swc_flutter)
+
+
 ```dart
 class CountState with ChangeNotifier {
 
