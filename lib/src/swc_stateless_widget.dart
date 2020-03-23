@@ -40,7 +40,7 @@ abstract class SwcStatelessWidget
         _state.initialized = true;
         _state.controller = getController();
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          _state.controller.init(context);
+          _state.controller?.init(context);
         });
       }
 

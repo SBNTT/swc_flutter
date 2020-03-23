@@ -46,7 +46,7 @@ abstract class SwcState
         _state.initialized = true;
         _state.controller = getController();
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          controller.init(context);
+          controller?.init(context);
         });
       }
 
