@@ -6,11 +6,9 @@ mixin ProviderHelper {
   bool disposed = false;
 
   dispatch<S extends ChangeNotifier>(BuildContext context, Function(S state) fn) {
-    if (disposed) return;
-
-    try {
-      fn(Provider.of<S>(context, listen: false));
-    } catch (e) {}
+    final state = pGet<S>(context);
+    if (state == null) return;
+    fn(state);
   }
 
   O pGet<O>(BuildContext context) {
