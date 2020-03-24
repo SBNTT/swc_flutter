@@ -1,5 +1,4 @@
 import 'package:swc_flutter/swc_flutter.dart';
-import 'package:example/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,12 +35,6 @@ class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
     return Scaffold(
       appBar: AppBar(
         title: Text("swc_flutter example app"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => controller.onSettingsButtonClick(context),
-          ),
-        ],
       ),
       body: Center(
         child: Consumer<CountState>(builder: (context, state, _) {
@@ -49,7 +42,7 @@ class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
         }),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add_circle),
+        child: const Icon(Icons.add),
         onPressed: () => controller.onAddButtonClick(context),
       ),
     );
@@ -63,15 +56,7 @@ class MyHomePageController extends SwcController {
   }
 
   onAddButtonClick(BuildContext context) {
-    Future.delayed(Duration(milliseconds: 2000), () {
-      dispatch(context, (CountState state) => state.increment());
-    });
-  }
-
-  onSettingsButtonClick(BuildContext context) {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => SettingsPage()),
-    );
+    dispatch(context, (CountState state) => state.increment());
   }
   
 }
