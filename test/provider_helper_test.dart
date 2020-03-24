@@ -15,7 +15,7 @@ void main() {
 
     testWidgets("pGet should return null", (tester) async {
       await tester.pumpWidget(MaterialApp(
-        home: _PGetTestWidget(),
+        home: _InvalidPGetTestWidget(),
       ));
       expect(find.text("null"), findsOneWidget);
     });

@@ -49,12 +49,14 @@ abstract class SwcState
       });
     }
 
+    controller?.setDisposed(false);
+
     return build(context);
   }
 
   @override
   void dispose() {
-    controller?.disposed = true;
+    controller?.setDisposed(true);
     super.dispose();
   }
 
