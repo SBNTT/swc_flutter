@@ -1,6 +1,6 @@
 # State Widget Controller
 
-![CI](https://github.com/SBNTT/swc_flutter/workflows/CI/PR/badge.svg)
+![CI](https://github.com/SBNTT/swc_flutter/workflows/CI/badge.svg)
 [![pub package](https://img.shields.io/pub/v/swc_flutter.svg)](https://pub.dev/packages/swc_flutter)
 [![codecov](https://codecov.io/gh/SBNTT/swc_flutter/branch/master/graph/badge.svg)](https://codecov.io/gh/SBNTT/swc_flutter)
 
