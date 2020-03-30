@@ -9,6 +9,8 @@ abstract class SwcStatelessWidget
     <C extends SwcController>
     extends StatelessWidget {
 
+  SwcStatelessWidget({Key key}) : super(key: key);
+
   final _state = SwcWidgetState<C>();
 
   List<SingleChildWidget> getProviders() => [];

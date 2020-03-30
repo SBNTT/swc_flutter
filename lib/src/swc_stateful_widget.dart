@@ -6,6 +6,8 @@ import 'package:provider/single_child_widget.dart';
 
 abstract class SwcStatefulWidget extends StatefulWidget {
 
+  SwcStatefulWidget({Key key}) : super(key: key);
+
   @override
   SwcState createState();
 
