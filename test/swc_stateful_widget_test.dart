@@ -45,6 +45,8 @@ class _SimpleTestWidgetState extends SwcState<_SimpleTestWidget, SwcController> 
 
   getController() => null;
 
+  getProviders() => [];
+
   build(_) => Text(widget.content);
 
 }

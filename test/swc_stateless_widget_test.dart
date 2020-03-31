@@ -40,6 +40,8 @@ class _SimpleTestWidget extends SwcStatelessWidget {
 
   getController() => null;
 
+  getProviders() => [];
+
   build(_) => Text(content);
 
 }

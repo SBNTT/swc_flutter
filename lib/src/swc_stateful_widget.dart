@@ -24,7 +24,7 @@ abstract class SwcState
 
   final _state = SwcWidgetState<C>();
   
-  List<SingleChildWidget> getProviders() => [];
+  List<SingleChildWidget> getProviders();
 
   C getController();
 
@@ -32,14 +32,15 @@ abstract class SwcState
 
   @protected
   Widget _wrapper(BuildContext context) {
-    final providers = getProviders();
+    _state.providers ??= getProviders() ?? [];
+    _state.controller ??= getController();
 
-    if (providers.isEmpty) {
+    if (_state.providers.isEmpty) {
       return _providerChild(context);
     }
 
     return MultiProvider(
-      providers: providers,
+      providers: _state.providers,
       child: Builder(builder: _providerChild),
     );
   }
@@ -47,7 +48,6 @@ abstract class SwcState
   Widget _providerChild(BuildContext context) {
     if (!_state.initialized) {
       _state.initialized = true;
-      _state.controller = getController();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         controller?.init(context);
       });
