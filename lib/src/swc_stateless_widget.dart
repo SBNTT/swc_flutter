@@ -19,6 +19,8 @@ abstract class SwcStatelessWidget
 
   C get controller => _state.controller;
 
+  /// Create a custom [StatelessElement] which will call our `SwcStatelessWidget._wrapper`
+  ///  instead of [SwcStatelessWidget.build] by default
   @override
   StatelessElement createElement() => _SwcStatelessElement(this);
 

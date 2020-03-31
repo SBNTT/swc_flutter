@@ -11,6 +11,8 @@ abstract class SwcStatefulWidget extends StatefulWidget {
   @override
   SwcState createState();
 
+  /// Create a custom [StatelessElement] which will call our `SwcStatelessWidget._wrapper`
+  ///  instead of [SwcStatelessWidget.build] by default
   @override
   StatefulElement createElement() => _SwcStatefulElement(this);
 

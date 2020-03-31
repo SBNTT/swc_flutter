@@ -29,6 +29,7 @@ coverage/
 .pub/
 build/
 pubspec.lock
+dartdoc_options.yaml
 
 # Android related
 **/android/**/gradle-wrapper.jar
