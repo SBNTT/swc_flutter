@@ -1,3 +1,7 @@
+## 1.1.0
+* Add constructor with optional Key parameter for both SwcStateless and SwcStateful widgets
+
+
 ## 1.0.1
 * Fix immutability warning when using SwcStatelessWidget
 
