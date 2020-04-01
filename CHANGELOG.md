@@ -1,3 +1,7 @@
+## 1.2.0
+* Make getController and getProviders called only once for both SwcStateless and SwcStateful widgets
+
+
 ## 1.1.0
 * Add constructor with optional Key parameter for both SwcStateless and SwcStateful widgets
 
