@@ -21,18 +21,10 @@ class CountState with ChangeNotifier {
 ```
 
 ```dart
-class MyHomePage extends SwcStatefulWidget {
-
-  SwcState createState() => _MyHomePageState();
-
-}
-
-class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
-
-  final  _countState = CountState();
+class MyHomePage extends SwcStatelessWidget<MyHomePageController> {
 
   getProviders() => [
-    ChangeNotifierProvider<CountState>.value(value: _countState),
+    ChangeNotifierProvider<CountState>(create: (_) => CountState()),
   ];
 
   getController() => MyHomePageController();
