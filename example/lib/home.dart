@@ -15,18 +15,10 @@ class CountState with ChangeNotifier {
 
 }
 
-class MyHomePage extends SwcStatefulWidget {
-
-  SwcState createState() => _MyHomePageState();
-
-}
-
-class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
-
-  final _countState = CountState();
+class MyHomePage extends SwcStatelessWidget<MyHomePageController> {
 
   getProviders() => [
-    ChangeNotifierProvider<CountState>.value(value: _countState),
+    ChangeNotifierProvider<CountState>(create: (_) => CountState()),
   ];
 
   getController() => MyHomePageController();
@@ -47,9 +39,10 @@ class _MyHomePageState extends SwcState<MyHomePage, MyHomePageController> {
       ),
     );
   }
+
 }
 
-class MyHomePageController extends SwcController {
+class MyHomePageController extends SwcController<MyHomePage> {
 
   init(BuildContext context) {
     print("init my home page");

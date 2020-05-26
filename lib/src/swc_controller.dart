@@ -7,7 +7,9 @@ import 'package:flutter/widgets.dart';
 /// 
 /// [SwcController.init] will be automaticaly called 
 /// before `build` method. Called only one time.
-abstract class SwcController with ProviderHelper {
+abstract class SwcController<W extends Widget> with ProviderHelper {
+
+  W widget;
 
   init(BuildContext context);
   
