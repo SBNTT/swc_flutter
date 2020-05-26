@@ -28,6 +28,7 @@ abstract class SwcStatelessWidget
   Widget _wrapper(BuildContext context) {
     _state.providers ??= getProviders() ?? [];
     _state.controller ??= getController();
+    _state.controller?.widget = this;
 
     if (_state.providers.isEmpty) {
       return _providerChild(context);

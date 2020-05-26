@@ -12,7 +12,7 @@ abstract class SwcStatefulWidget extends StatefulWidget {
   SwcState createState();
 
   /// Create a custom [StatelessElement] which will call our `SwcStatelessWidget._wrapper`
-  ///  instead of [SwcStatelessWidget.build] by default
+  /// instead of [SwcStatelessWidget.build] by default
   @override
   StatefulElement createElement() => _SwcStatefulElement(this);
 
@@ -34,6 +34,7 @@ abstract class SwcState
   Widget _wrapper(BuildContext context) {
     _state.providers ??= getProviders() ?? [];
     _state.controller ??= getController();
+    _state.controller?.widget = widget;
 
     if (_state.providers.isEmpty) {
       return _providerChild(context);

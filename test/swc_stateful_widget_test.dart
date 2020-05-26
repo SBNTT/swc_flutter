@@ -28,6 +28,18 @@ void main() {
       expect(find.text('0'), findsNothing);
       expect(find.text('1'), findsOneWidget);
     });
+
+    testWidgets("Access to widget within SwcController", (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: _CounterTestWidget(),
+      ));
+
+      final state = tester.state(find.byType(_CounterTestWidget));
+      final controller = (state as SwcState).controller;
+      
+      expect(controller.widget, isNotNull);
+      expect(controller.widget, isInstanceOf<_CounterTestWidget>());
+    });
   });
 }
 
@@ -59,12 +71,10 @@ class _CounterTestWidget extends SwcStatefulWidget {
 
 class _CounterTestWidgetState extends SwcState<_CounterTestWidget, CounterController> {
 
-  final _counterState = CounterState();
-
   getController() => CounterController();
 
   getProviders() => [
-    ChangeNotifierProvider<CounterState>.value(value: _counterState),
+    ChangeNotifierProvider<CounterState>(create: (_) => CounterState()),
   ];
 
   Widget build(BuildContext context) {

@@ -29,6 +29,18 @@ void main() {
       expect(find.text("0"), findsNothing);
       expect(find.text("1"), findsOneWidget);
     });
+
+    testWidgets("Access to widget within SwcController", (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: _CounterTestWidget(),
+      ));
+
+      final widget = tester.widget(find.byType(_CounterTestWidget));
+      final controller = (widget as SwcStatelessWidget).controller;
+
+      expect(controller.widget, isNotNull);
+      expect(controller.widget, isInstanceOf<_CounterTestWidget>());
+    });
   });
 }
 
