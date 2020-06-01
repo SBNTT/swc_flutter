@@ -1,4 +1,5 @@
 import 'package:swc_flutter/src/swc_controller.dart';
+import 'package:swc_flutter/src/swc_widget.dart';
 import 'package:swc_flutter/src/swc_widget_state.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -6,8 +7,9 @@ import 'package:provider/single_child_widget.dart';
 import 'package:swc_flutter/swc_flutter.dart';
 
 abstract class SwcStatelessWidget
-    <C extends SwcController>
-    extends StatelessWidget {
+    <C extends SwcController<SwcWidget>>
+    extends StatelessWidget
+    implements SwcWidget {
 
   SwcStatelessWidget({Key key}) : super(key: key);
 

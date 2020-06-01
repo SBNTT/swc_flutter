@@ -1,12 +1,15 @@
 import 'package:swc_flutter/src/swc_controller.dart';
+import 'package:swc_flutter/src/swc_widget.dart';
 import 'package:swc_flutter/src/swc_widget_state.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-abstract class SwcStatefulWidget extends StatefulWidget {
+abstract class SwcStatefulWidget 
+    extends StatefulWidget
+    implements SwcWidget {
 
-  SwcStatefulWidget({Key key}) : super(key: key);
+  const SwcStatefulWidget({Key key}) : super(key: key);
 
   @override
   SwcState createState();
@@ -19,7 +22,7 @@ abstract class SwcStatefulWidget extends StatefulWidget {
 }
 
 abstract class SwcState
-    <W extends SwcStatefulWidget, C extends SwcController>
+    <W extends SwcStatefulWidget, C extends SwcController<SwcWidget>>
     extends State<W> {
 
   final _state = SwcWidgetState<C>();
