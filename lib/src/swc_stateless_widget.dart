@@ -7,7 +7,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:swc_flutter/swc_flutter.dart';
 
 abstract class SwcStatelessWidget
-    <C extends SwcController>
+    <C extends SwcController<SwcWidget>>
     extends StatelessWidget
     implements SwcWidget {
 

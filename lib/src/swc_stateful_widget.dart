@@ -22,7 +22,7 @@ abstract class SwcStatefulWidget
 }
 
 abstract class SwcState
-    <W extends SwcStatefulWidget, C extends SwcController>
+    <W extends SwcStatefulWidget, C extends SwcController<SwcWidget>>
     extends State<W> {
 
   final _state = SwcWidgetState<C>();
