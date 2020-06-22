@@ -1,3 +1,13 @@
+## 1.4.1
+* Make getController called **before** getProviders in case we want to inject controller using Provider
+
+## 1.4.0
+* Generics improvements
+
+## 1.3.0
+* Controlled widget is accessible throught its controller by `widget` attribute
+* Controlled widget can be strongly type by `SwcController<MyWidget>`
+
 ## 1.2.0
 * Make getController and getProviders called only once for both SwcStateless and SwcStateful widgets
 
