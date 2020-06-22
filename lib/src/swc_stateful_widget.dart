@@ -35,9 +35,9 @@ abstract class SwcState
 
   @protected
   Widget _wrapper(BuildContext context) {
-    _state.providers ??= getProviders() ?? [];
     _state.controller ??= getController();
     _state.controller?.widget = widget;
+    _state.providers ??= getProviders() ?? [];
 
     if (_state.providers.isEmpty) {
       return _providerChild(context);

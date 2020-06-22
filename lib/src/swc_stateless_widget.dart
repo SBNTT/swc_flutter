@@ -22,15 +22,15 @@ abstract class SwcStatelessWidget
   C get controller => _state.controller;
 
   /// Create a custom [StatelessElement] which will call our `SwcStatelessWidget._wrapper`
-  ///  instead of [SwcStatelessWidget.build] by default
+  /// instead of [SwcStatelessWidget.build] by default
   @override
   StatelessElement createElement() => _SwcStatelessElement(this);
 
   @protected
   Widget _wrapper(BuildContext context) {
-    _state.providers ??= getProviders() ?? [];
     _state.controller ??= getController();
     _state.controller?.widget = this;
+    _state.providers ??= getProviders() ?? [];
 
     if (_state.providers.isEmpty) {
       return _providerChild(context);
