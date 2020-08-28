@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM debian:stretch
 
 RUN apt-get update && apt-get -y install git curl unzip
 
