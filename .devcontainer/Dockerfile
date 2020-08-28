@@ -1,28 +1,17 @@
-# Update VARIANT in devcontainer.json to pick a Dart version
-ARG VARIANT=2
-FROM google/dart:${VARIANT}
+FROM ubuntu:20.04
 
-# Options for setup script
-ARG INSTALL_ZSH="true"
-ARG UPGRADE_PACKAGES="false"
-ARG USERNAME=vscode
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
+RUN apt-get update && apt-get -y install git curl unzip
 
-# Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
-COPY library-scripts/*.sh /tmp/library-scripts/
-RUN apt-get update \
-    && /bin/bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
-# Add bin location to path
-ENV PUB_CACHE="/usr/local/share/pub-cache"
-ENV PATH="${PATH}:${PUB_CACHE}/bin"
-RUN mkdir -p ${PUB_CACHE} \
-    && chown ${USERNAME}:root ${PUB_CACHE} \
-    && echo "if [ \"\$(stat -c '%U' ${PUB_CACHE})\" != \"${USERNAME}\" ]; then sudo chown -R ${USER_UID}:root ${PUB_CACHE}; fi" \
-    | tee -a /root/.bashrc /root/.zshrc /home/${USERNAME}/.bashrc >> /home/${USERNAME}/.zshrc
+RUN mkdir /home/codespace
+WORKDIR /home/codespace
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+ENV PUB_CACHE=/home/codespace/.pub_cache
+ENV PATH="/home/codespace/flutter/bin:$PATH"
+
+RUN git clone https://github.com/flutter/flutter 
+RUN flutter/bin/flutter channel beta && flutter/bin/flutter upgrade
+RUN flutter/bin/flutter config --enable-web
