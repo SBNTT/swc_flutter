@@ -23,16 +23,19 @@ class CountState with ChangeNotifier {
 ```dart
 class MyHomePage extends SwcStatelessWidget<MyHomePageController> {
 
+  @override
   getProviders() => [
     ChangeNotifierProvider<CountState>(create: (_) => CountState()),
   ];
 
+  @override
   getController() => MyHomePageController();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("counting using swc_flutter"),
+        title: const Text('swc_flutter example app'),
       ),
       body: Center(
         child: Consumer<CountState>(builder: (context, state, _) {
@@ -40,8 +43,8 @@ class MyHomePage extends SwcStatelessWidget<MyHomePageController> {
         }),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add_circle),
         onPressed: () => controller.onAddButtonClick(context),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -50,16 +53,18 @@ class MyHomePage extends SwcStatelessWidget<MyHomePageController> {
 ```
 
 ```dart
-class MyHomePageController extends SwcController {
+class MyHomePageController extends SwcController<MyHomePage> {
 
+  @override
   init(BuildContext context) {
-    print("init my home page");
+    // ignore: avoid_print
+    print('init my home page');
   }
 
   onAddButtonClick(BuildContext context) {
-    dispatch(context, (CountState state) => state.increment());
+    dispatch<CountState>(context, (state) => state.increment());
   }
- 
+  
 }
 ```
 
