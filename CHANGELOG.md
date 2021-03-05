@@ -1,3 +1,6 @@
+## 1.5.0-nullsafety
+* Nullsafety migration
+
 ## 1.4.1
 * Make getController called **before** getProviders in case we want to inject controller using Provider
 
