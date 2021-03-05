@@ -1,6 +1,6 @@
 name: swc_flutter
 description: flutter developement simplifier
-version: 1.5.0-nullsafe
+version: 1.5.0-nullsafety
 homepage: https://github.com/SBNTT/swc_flutter
 
 environment:
