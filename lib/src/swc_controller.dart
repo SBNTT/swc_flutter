@@ -10,7 +10,7 @@ import 'package:swc_flutter/src/swc_widget.dart';
 /// before `build` method. Called only one time.
 abstract class SwcController<W extends SwcWidget> with ProviderHelper {
 
-  W widget;
+  W? widget;
 
   init(BuildContext context);
   

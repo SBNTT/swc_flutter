@@ -9,13 +9,9 @@ abstract class SwcStatefulWidget
     extends StatefulWidget
     implements SwcWidget {
 
-  const SwcStatefulWidget({Key key}) : super(key: key);
-
-  @override
-  SwcState createState();
+  const SwcStatefulWidget({Key? key}) : super(key: key);
 
   /// Create a custom [StatelessElement] which will call our `SwcStatelessWidget._wrapper`
-  /// instead of [SwcStatelessWidget.build] by default
   @override
   StatefulElement createElement() => _SwcStatefulElement(this);
 
@@ -35,9 +31,9 @@ abstract class SwcState
 
   @protected
   Widget _wrapper(BuildContext context) {
-    _state.controller ??= getController();
-    _state.controller?.widget = widget;
-    _state.providers ??= getProviders() ?? [];
+    _state.controller = getController();
+    _state.controller.widget = widget;
+    _state.providers = getProviders();
 
     if (_state.providers.isEmpty) {
       return _providerChild(context);
@@ -52,19 +48,19 @@ abstract class SwcState
   Widget _providerChild(BuildContext context) {
     if (!_state.initialized) {
       _state.initialized = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        controller?.init(context);
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        controller.init(context);
       });
     }
 
-    controller?.setDisposed(false);
+    controller.setDisposed(value: false);
 
     return build(context);
   }
 
   @override
   void dispose() {
-    controller?.setDisposed(true);
+    controller.setDisposed(value: true);
     super.dispose();
   }
 
@@ -75,7 +71,7 @@ class _SwcStatefulElement extends StatefulElement {
   _SwcStatefulElement(SwcStatefulWidget widget) : super(widget);
 
   @override
-  SwcState get state => super.state;
+  SwcState get state => super.state as SwcState<SwcStatefulWidget, SwcController<SwcWidget>>;
 
   @override
   Widget build() => state._wrapper(this);

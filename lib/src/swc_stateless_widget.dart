@@ -11,7 +11,9 @@ abstract class SwcStatelessWidget
     extends StatelessWidget
     implements SwcWidget {
 
-  SwcStatelessWidget({Key key}) : super(key: key);
+  /// because of late usage on [SwcStatelessWidget._state]
+  /// ignore: prefer_const_constructors_in_immutables
+  SwcStatelessWidget({Key? key}) : super(key: key);
 
   final _state = SwcWidgetState<C>();
 
@@ -22,15 +24,14 @@ abstract class SwcStatelessWidget
   C get controller => _state.controller;
 
   /// Create a custom [StatelessElement] which will call our `SwcStatelessWidget._wrapper`
-  /// instead of [SwcStatelessWidget.build] by default
   @override
   StatelessElement createElement() => _SwcStatelessElement(this);
 
   @protected
   Widget _wrapper(BuildContext context) {
-    _state.controller ??= getController();
-    _state.controller?.widget = this;
-    _state.providers ??= getProviders() ?? [];
+    _state.controller = getController();
+    _state.controller.widget = this;
+    _state.providers = getProviders();
 
     if (_state.providers.isEmpty) {
       return _providerChild(context);
@@ -45,8 +46,8 @@ abstract class SwcStatelessWidget
   Widget _providerChild(BuildContext context) {
     if (!_state.initialized) {
       _state.initialized = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _state.controller?.init(context);
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        _state.controller.init(context);
       });
     }
 
@@ -60,7 +61,7 @@ class _SwcStatelessElement extends StatelessElement {
   _SwcStatelessElement(SwcStatelessWidget widget) : super(widget);
 
   @override
-  SwcStatelessWidget get widget => super.widget;
+  SwcStatelessWidget get widget => super.widget as SwcStatelessWidget<SwcController<SwcWidget>>;
 
   @override
   Widget build() => widget._wrapper(this);

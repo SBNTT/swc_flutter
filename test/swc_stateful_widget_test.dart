@@ -5,16 +5,16 @@ import 'package:swc_flutter/swc_flutter.dart';
 import 'common.dart';
 
 void main() {
-  group("Test SwcStatefulWidget", () {
-    testWidgets("Wrapping a hardcoded Text Widget", (tester) async {
-      final content = "Hi!";
+  group('Test SwcStatefulWidget', () {
+    testWidgets('Wrapping a hardcoded Text Widget', (tester) async {
+      final content = 'Hi!';
       await tester.pumpWidget(MaterialApp(
         home: _SimpleTestWidget(content: content),
       ));
       expect(find.text(content), findsOneWidget);
     });
 
-    testWidgets("Counter widget", (tester) async {
+    testWidgets('Counter widget', (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: _CounterTestWidget(),
       ));
@@ -29,7 +29,7 @@ void main() {
       expect(find.text('1'), findsOneWidget);
     });
 
-    testWidgets("Access to widget within SwcController", (tester) async {
+    testWidgets('Access to widget within SwcController', (tester) async {
       await tester.pumpWidget(MaterialApp(
         home: _CounterTestWidget(),
       ));
@@ -45,46 +45,54 @@ void main() {
 
 class _SimpleTestWidget extends SwcStatefulWidget {
 
-  final String content;
+  final String? content;
 
-  _SimpleTestWidget({this.content});
+  const _SimpleTestWidget({this.content});
 
+  @override
   SwcState createState() => _SimpleTestWidgetState();
 
 }
 
-class _SimpleTestWidgetState extends SwcState<_SimpleTestWidget, SwcController> {
+class _SimpleTestWidgetState extends SwcState<_SimpleTestWidget, EmptyController> {
 
-  getController() => null;
+  // ignore: annotate_overrides
+  getController() => EmptyController();
 
+  @override
   getProviders() => [];
 
-  build(_) => Text(widget.content);
+  @override
+  build(_) => Text(widget.content!);
 
 }
 
 class _CounterTestWidget extends SwcStatefulWidget {
 
+  @override
   SwcState createState() => _CounterTestWidgetState();
 
 }
 
 class _CounterTestWidgetState extends SwcState<_CounterTestWidget, CounterController> {
 
+  @override
   getController() => CounterController();
 
+  @override
   getProviders() => [
     ChangeNotifierProvider<CounterState>(create: (_) => CounterState()),
   ];
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<CounterState>(builder: (context, state, _) {
         return Text(state.get().toString());
       }),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
         onPressed: () => controller.onAddButtonClick(context),
+        child: const Icon(Icons.add),
       ),
     );
   }

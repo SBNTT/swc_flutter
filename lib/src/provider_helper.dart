@@ -42,12 +42,12 @@ mixin ProviderHelper {
   /// 
   /// returns null if `disposed` flag is true or if an exception is thrown
   /// 
-  /// You msut check for null value, or use the null aware operator (`?.` or `??`)
+  /// You must check for null value, or use the null aware operator (`?.` or `??`)
   /// 
   /// ```dart
   /// pGet<FooObject>(context)?.bar();
   /// ```
-  O pGet<O>(BuildContext context) {
+  O? pGet<O>(BuildContext context) {
     if (_state.disposed) return null;
 
     try {
@@ -57,6 +57,6 @@ mixin ProviderHelper {
     }
   }
 
-  setDisposed(bool value) => _state.disposed = value;
+  setDisposed({required bool value}) => _state.disposed = value;
 
 }

@@ -16,10 +16,18 @@ class CounterState with ChangeNotifier {
 
 class CounterController extends SwcController {
 
+  @override
   init(BuildContext context) {}
 
   onAddButtonClick(BuildContext context) {
-    dispatch(context, (CounterState state) => state.increment());
+    dispatch<CounterState>(context, (state) => state.increment());
   }
+  
+}
+
+class EmptyController extends SwcController {
+  
+  @override
+  init(BuildContext context) { }
   
 }
