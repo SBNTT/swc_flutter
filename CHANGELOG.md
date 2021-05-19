@@ -1,3 +1,6 @@
+## 1.5.1-nullsafety
+* Use version range for provider dependency
+
 ## 1.5.0-nullsafety
 * Nullsafety migration
 
