@@ -1,6 +1,6 @@
 name: swc_flutter
 description: flutter developement simplifier
-version: 1.5.0-nullsafety
+version: 1.5.1-nullsafety
 homepage: https://github.com/SBNTT/swc_flutter
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^5.0.0
+  provider: ">=5.0.0 <6.0.0"
 
 dev_dependencies:
   flutter_test:
