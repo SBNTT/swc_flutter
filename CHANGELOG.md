@@ -1,3 +1,8 @@
+## 2.0.0
+* Nullsafety support
+* Dart >= 2.12.0 required
+* Provider >= 5.0.0 required
+
 ## 1.5.1-nullsafety
 * Use version range for provider dependency
 
