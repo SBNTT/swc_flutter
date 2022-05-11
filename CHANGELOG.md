@@ -1,3 +1,8 @@
+## 2.0.1
+* Nullsafety support
+* Dart >= 2.16.0 required
+* Provider >= 6.0.0 required
+
 ## 2.0.0
 * Nullsafety support
 * Dart >= 2.12.0 required
