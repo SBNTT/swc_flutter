@@ -1,3 +1,6 @@
+## 2.0.2
+* Flutter 3 support
+
 ## 2.0.1
 * Nullsafety support
 * Dart >= 2.16.0 required

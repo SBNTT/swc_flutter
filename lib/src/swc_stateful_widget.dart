@@ -48,7 +48,7 @@ abstract class SwcState
   Widget _providerChild(BuildContext context) {
     if (!_state.initialized) {
       _state.initialized = true;
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         controller.init(context);
       });
     }
